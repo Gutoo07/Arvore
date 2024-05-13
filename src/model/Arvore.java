@@ -17,7 +17,7 @@ public class Arvore<T extends Comparable> {
 	public void add(T valor) {
 		NoArvore<T> novo = new NoArvore<T>(valor);
 		tamanho++;
-		if ( raiz == null) {
+		if (raiz == null) {
 			this.raiz = novo;
 			return;
 		}
@@ -54,12 +54,30 @@ public class Arvore<T extends Comparable> {
 			ordem(atual.getMaior(), lista);
 		}
 	}
+	public ListaSimples preOrdem() {
+		ListaSimples lista = new ListaSimples();
+		NoArvore<T> atual = this.raiz;
+		preOrdem(atual, lista);
+		return lista;
+	}
+	private void preOrdem(NoArvore<T> atual, ListaSimples lista) {
+		if (atual != null) {
+			lista.append(atual.getValor());
+			preOrdem(atual.getMenor(), lista);
+			preOrdem(atual.getMaior(), lista);
+		}
+	}
+	public ListaSimples posOrdem() {
+		ListaSimples lista = new ListaSimples();
+		NoArvore<T> atual = this.raiz;
+		posOrdem(atual, lista);
+		return lista;
+	}
+	private void posOrdem(NoArvore<T> atual, ListaSimples lista) {
+		if (atual != null) {
+			posOrdem(atual.getMenor(), lista);
+			posOrdem(atual.getMaior(), lista);
+			lista.append(atual.getValor());
+		}
+	}
 }
-
-
-
-
-
-
-
-
