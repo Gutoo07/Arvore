@@ -14,6 +14,24 @@ public class Arvore<T extends Comparable> {
 	public Arvore() {
 		this.raiz = null;
 	}
+	
+	public void remove(T remover) throws Exception {
+		if (raiz == null) {
+			throw new Exception("Lista vazia.");
+		}
+		NoArvore<T> atual = this.raiz;
+		if (atual.getValor() == remover) { //se for remover a própria raiz
+			throw new Exception("Número a remover é a raiz; cancelando operação.");
+		}
+		if (atual.getValor().compareTo(remover) == -1) {// se o remover é menor que a raiz
+			if (atual.getMenor() != null) {
+				atual = atual.getMenor();
+			} else {
+				throw new Exception("Número a remover não existe na lista.");
+			}
+		}
+	}
+	
 	public void add(T valor) {
 		NoArvore<T> novo = new NoArvore<T>(valor);
 		tamanho++;
@@ -80,4 +98,5 @@ public class Arvore<T extends Comparable> {
 			lista.append(atual.getValor());
 		}
 	}
+	
 }
