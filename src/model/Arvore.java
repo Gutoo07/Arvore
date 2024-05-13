@@ -26,6 +26,9 @@ public class Arvore<T extends Comparable> {
 		if (atual.getValor().compareTo(remover) == -1) {// se o remover é menor que a raiz
 			if (atual.getMenor() != null) {
 				atual = atual.getMenor();
+				if (atual.getValor() == remover) {
+					
+				}
 			} else {
 				throw new Exception("Número a remover não existe na lista.");
 			}
