@@ -1,5 +1,4 @@
 package model;
-import model.NoListaSimples;
 import java.lang.Exception;
 
 public class ListaSimples<T> {
@@ -126,12 +125,15 @@ public class ListaSimples<T> {
 		builder.append("]");
 		return builder.toString();
 	}
+	public Arvore balancear(Arvore balanceada, ListaSimples lista, int inicio, int fim) {
+		if (inicio > fim) {
+			return null;
+		}
+		int meio = (inicio + fim) / 2;
+		System.out.println("Meio="+meio);
+		balanceada.add((int) get(meio).getValor());
+		balancear(balanceada, lista, inicio, meio-1);
+		balancear(balanceada, lista, meio+1, fim);
+		return balanceada;
+	}
 }
-
-
-
-
-
-
-
-
