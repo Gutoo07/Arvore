@@ -4,11 +4,15 @@ public class NoArvore<T> {
 	private T valor;
 	private NoArvore<T> maior;
 	private NoArvore<T> menor;
+	private NoArvore<T> raiz;
+	private int balanceamento;
 	
 	public NoArvore(T valor) {
 		this.valor = valor;
 		this.maior = null;
 		this.menor = null;
+		this.raiz = null;
+		this.balanceamento = 0;
 	}
 	public T getValor() {
 		return this.valor;
@@ -27,6 +31,18 @@ public class NoArvore<T> {
 	}
 	public void setMenor(NoArvore<T> menor) {
 		this.menor = menor;
+	}
+	public void setBalanceamento(int balanceamento) {
+		this.balanceamento = balanceamento;
+	}
+	public int getBalanceamento() {
+		return this.balanceamento;
+	}
+	public void setRaiz(NoArvore<T> raiz) {
+		this.raiz = raiz;
+	}
+	public NoArvore<T> getRaiz() {
+		return this.raiz;
 	}
 	@Override
 	public String toString() {
