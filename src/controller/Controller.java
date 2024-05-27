@@ -33,13 +33,13 @@ public class Controller {
 		lista = arvore.ordem();	
 		System.out.println(lista.toString());
 		
-		arvore.remove(22);
-		arvore.remove(46);
+		arvore.remove(45);
 		
 		lista = arvore.ordem();
 		System.out.println(lista.toString());
 		//Remove funcionando, agora vamos implementar o "pai"
 		
-		
+		lista = arvore.preOrdem();
+		System.out.println(lista.toString());
 	}
 }

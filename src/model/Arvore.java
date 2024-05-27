@@ -220,14 +220,14 @@ public class Arvore<T extends Comparable> {
 		}
 	}	
 	public boolean remove(T valor) {
-		//buscar o nó na árvore
+		//buscar o n� na �rvore
 		NoArvore<T> atual = this.raiz;
 		NoArvore<T> paiAtual = null;
 		while (atual != null) {
 			if (atual.getValor().equals(valor)) {
 				break;
 			} else if (valor.compareTo(atual.getValor()) == -1) {
-				//valor procurado é menor que o atual
+				//valor procurado � menor que o atual
 				paiAtual = atual;
 				atual = atual.getMenor();
 			} else {
@@ -235,11 +235,11 @@ public class Arvore<T extends Comparable> {
 				atual = atual.getMaior();
 			}
 		}
-		//verifica se existe o Nó
+		//verifica se existe o no
 		if (atual == null) {
 			return false;
 		}
-		//Nó tem 2 filhos ou Nó tem somente filho à direita
+		//no tem 2 filhos ou no tem somente filho a direita
 		if (atual.getMaior() != null) {
 			NoArvore<T> substituto = atual.getMaior();
 			NoArvore<T> paiSubstituto = atual;
@@ -247,32 +247,42 @@ public class Arvore<T extends Comparable> {
 				paiSubstituto = substituto;
 				substituto = substituto.getMenor();
 			}
-			substituto.setMenor(atual.getMenor());
+			substituto.setMenor(atual.getMenor()); //e agora as novas remocoes/substituicoes			
+			atual.getMenor().setRaiz(substituto);
+			atual.getMaior().setRaiz(substituto);
+			
 			if (paiAtual != null) {
-				//verificar se é a raiz
+				//verificar se eh a raiz (paiAtual != null quer dizer q nao eh a raiz)
 				if (atual.getValor().compareTo(paiAtual.getValor()) == -1 ) {
 					//atual < paiAtual
 					paiAtual.setMenor(substituto);
+					substituto.setRaiz(paiAtual);//
 				} else {
 					paiAtual.setMaior(substituto);
+					substituto.setRaiz(paiAtual);//
 				}
 			} else {
-				//se não tem paiAtual, então é a raiz
+				//se n�o tem paiAtual, entao eh a raiz
 				this.raiz = substituto;
+				substituto.setRaiz(null);//
 				paiSubstituto.setMenor(null);
 				this.raiz.setMaior(paiSubstituto);
+				paiSubstituto.setRaiz(atual);//
 				this.raiz.setMenor(atual.getMenor());
+				atual.getMenor().setRaiz(atual);//
 			}
-			//removeu no Nó da árvore
+			//removeu no No da Arvore
 			if (substituto.getValor().compareTo(paiSubstituto.getValor()) == -1) {
 				//substituto < paiSubstituto
 				paiSubstituto.setMenor(null);
 				substituto.setMaior(paiSubstituto);
+				paiSubstituto.setRaiz(substituto);//
 			} else {
+				paiSubstituto.getMaior().setRaiz(null);//
 				paiSubstituto.setMaior(null);
 			}
 		} else if (atual.getMenor() != null) {
-			//tem filho só à esquerda
+			//tem filho apenas na esquerda
 			NoArvore<T> substituto = atual.getMenor();
 			NoArvore<T> paiSubstituto = atual;
 			while (substituto.getMaior() != null) {
@@ -283,16 +293,23 @@ public class Arvore<T extends Comparable> {
 				if (atual.getValor().compareTo(paiAtual.getValor()) == -1) {
 					//atual < paiAtual
 					paiAtual.setMenor(substituto);
+					substituto.setRaiz(paiAtual);//
+					atual.getMenor().setRaiz(substituto);//
 				} else {
 					paiAtual.setMaior(substituto);
+					substituto.setRaiz(paiAtual);//
+					atual.getMenor().setRaiz(substituto);//
 				}
 			} else {
 				//se for a raiz
+				atual.getMaior().setRaiz(substituto);
+				atual.getMenor().setRaiz(substituto);
 				this.raiz = substituto;
 			}
-			//removeu o Nó da árvore
+			//removeu o No da Arvore
 			if (substituto.getValor().compareTo(paiSubstituto.getValor()) == -1) {
 				paiSubstituto.setMenor(null);
+				
 			} else {
 				paiSubstituto.setMaior(null);
 			}
