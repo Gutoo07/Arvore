@@ -28,42 +28,18 @@ public class Controller {
 		ListaSimples lista = arvore.ordem();	
 		System.out.println(lista.toString());
 		
-		lista = arvore.preOrdem();
-		System.out.println(lista.toString());
-		System.out.println();
+		arvore.remove(23);
 		
-		/* Arvore balanceada = lista.balancear(lista);
-		
-		lista = balanceada.ordem();
+		lista = arvore.ordem();	
 		System.out.println(lista.toString());
 		
-		lista = balanceada.preOrdem();
-		System.out.println(lista.toString()); */
+		arvore.remove(22);
+		arvore.remove(46);
 		
-		
-		Arvore balanceada = new Arvore();
-		balanceada.add(46);
-		balanceada.add(45);
-		balanceada.add(41);
-		balanceada.add(40);
-		balanceada.add(36);
-		balanceada.add(35);
-		balanceada.add(31);
-		balanceada.add(30);
-		balanceada.add(29);
-		balanceada.add(28);
-		balanceada.add(27);
-		balanceada.add(25);
-		balanceada.add(24);
-		balanceada.add(23);
-		balanceada.add(22);
-		
-		lista = balanceada.ordem();
-
-		Arvore balanceada2 = new Arvore();
-		lista.balancear(balanceada2, lista, 0, 15);
-		
-		lista = balanceada2.preOrdem();
+		lista = arvore.ordem();
 		System.out.println(lista.toString());
+		//Remove funcionando, agora vamos implementar o "pai"
+		
+		
 	}
 }
